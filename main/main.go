@@ -13,6 +13,8 @@ func main() {
 	fmt.Printf("%v with url:%v start to parse\n", *fileType, *url)
 	if *fileType == "video" {
 		VideoDownloader.StartWithUrl(*url)
+	} else if *fileType == "doc" {
+
 	} else {
 		fmt.Println("invalid file type:%v", *fileType)
 	}

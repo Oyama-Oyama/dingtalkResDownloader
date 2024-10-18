@@ -6,9 +6,11 @@ replace DingTalk/VideoDownloader => ../video
 
 replace DingTalk/m3u8Downloader => ../m3u8Downloader
 
-require DingTalk/VideoDownloader v0.0.0-00010101000000-000000000000
+require (
+	DingTalk/VideoDownloader v0.0.0-00010101000000-000000000000
+)
 
-require DingTalk/m3u8Downloader v0.0.0-00010101000000-000000000000 // indirect
+// require DingTalk/doc v0.0.0-00010101000000-000000000000
 
 require (
 	github.com/chromedp/cdproto v0.0.0-20240810084448-b931b754e476 // indirect
