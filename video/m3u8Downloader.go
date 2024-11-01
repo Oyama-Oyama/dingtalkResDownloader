@@ -22,6 +22,7 @@ type SliceItem struct {
 
 var wg sync.WaitGroup
 var cacheFolder = "tmp"
+var downloadFolder = "DownloadedVideos"
 var sliceItemDownloadChan = make(chan SliceItem, 3)
 var count = 0
 var progress = -1
@@ -35,6 +36,11 @@ func init() {
 	} else {
 		os.RemoveAll(cacheFolder)
 		os.Mkdir(cacheFolder, 0777)
+	}
+	//创建存储目录
+	_, err = os.Stat(downloadFolder)
+	if os.IsNotExist(err) {
+		os.Mkdir(downloadFolder, 0777)
 	}
 }
 
@@ -112,7 +118,7 @@ func downloadM3u8File(title string, playbackUrl string) {
 	fmt.Println("\nall slice files downloaded")
 	mergeTs := strings.Join(sliceTitles, "|")
 	title = strings.ReplaceAll(title, ":", "-")
-	mergeTsFiles(mergeTs, fmt.Sprintf("%v.mp4", title))
+	mergeTsFiles(mergeTs, fmt.Sprintf("%v/%v.mp4", downloadFolder, title))
 }
 
 func parseSliceUrl(playbackUrl string) string {
